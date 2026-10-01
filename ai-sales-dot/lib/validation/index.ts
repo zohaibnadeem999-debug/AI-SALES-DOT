@@ -1,0 +1,5 @@
+import { z } from "zod";
+export const leadInput = z.object({ name: z.string().trim().min(1, "Lead name is required.").max(100), contact: z.string().trim().max(200).default(""), requirement: z.string().trim().max(1000).default(""), budget: z.string().trim().max(100).default(""), notes: z.string().trim().max(2000).default("") });
+export const businessInput = z.object({ name: z.string().trim().min(1, "Business name is required.").max(100), description: z.string().max(2000), products: z.string().max(2000), targetCustomer: z.string().max(1000), qualificationRules: z.string().max(2000), salesInstructions: z.string().max(2000) });
+export const analysisSchema = z.object({ qualification: z.enum(["qualified", "unqualified", "needs_follow_up"]), score: z.number().int().min(0).max(100), intent: z.enum(["high", "medium", "low", "unknown"]), budget: z.enum(["provided", "not_provided"]), requirements: z.array(z.string()), objections: z.array(z.string()), reason: z.string(), recommended_action: z.string(), follow_up_message: z.string() });
+export const chatInput = z.object({ message: z.string().trim().min(1, "Type a message first.").max(4000) });
